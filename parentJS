@@ -1,0 +1,31 @@
+import {LightningElement,api} from 'lwc';
+export default class ParentComp extends LightningElement 
+{
+    @api username;
+    @api useremail;
+    @api userphone;
+    @api useraddress;
+
+    handleAction()
+    {
+        this.username = this.template.querySelector('.userName').value;
+        this.useremail = this.template.querySelector('.userEmail').value;
+        this.userphone = this.template.querySelector('.userPhone').value;
+        this.useraddress = this.template.querySelector('.userAddress').value;
+
+        var fullValueStr = 
+        {
+            getUserName : this.username,
+            getUserEmail : this.useremail,
+            getUserPhone : this.userphone,
+            getUserAddress : this.useraddress
+        };
+
+        this.template.querySelector('c-child-comp').displayChildValueAction(fullValueStr);
+
+        this.username = this.template.querySelector('.userName').value = '';
+        this.useremail = this.template.querySelector('.userEmail').value = '';
+        this.userphone = this.template.querySelector('.userPhone').value = '';
+        this.useraddress = this.template.querySelector('.userAddress').value = '';
+    }
+}
